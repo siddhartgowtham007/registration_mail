@@ -22,9 +22,11 @@ def registration(request):
             MPUFO=pfd.save(commit=False)
             MPUFO.username=MUSFO
             MPUFO.save()
-            send_mail('registration','thank u for registration','siddharthgowtham1432@gmail.com'
-                      ,[User.email],fail_silently=False,)
+            send_mail('registration','thank u for registration','siddharthgowtham1432@gmail.com',
+                      [MUSFO.email],fail_silently=False,)
             
             return HttpResponse('registration successful')
+        else:
+            return HttpResponse('invalid credentials')
 
     return render(request,'registration.html',d)
